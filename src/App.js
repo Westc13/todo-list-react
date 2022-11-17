@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import TodoList from "./TodoList";
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState([
+    { id: 1, name: "Todo 1", complete: false },
+  ]);
   /* object destructure - the todos in the array above represent every state, the setTodos is the function that updates those todos */
   return (
     <>
