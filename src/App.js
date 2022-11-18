@@ -1,5 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import TodoList from "./TodoList";
+import uuidv4 from "uuid/v4";
 function App() {
   const [todos, setTodos] = useState([]);
   /* object destructure - the todos in the array above represent every state, the setTodos is the function that updates those todos */
@@ -10,6 +11,7 @@ function App() {
     /* if user types in an empty string, no adding it to the todo list */
     setTodos((prevTodos) => {
       return [...prevTodos, { id: 1, name: name, complete: false }];
+      /* need a library to automatically generate a random id for every new todo item added by user, npm i uuid */
     });
     todoNameRef.current.value = null;
     /* this line of code clear out the input field after the user input todo is added to the page */
