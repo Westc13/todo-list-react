@@ -5,7 +5,14 @@ function App() {
   /* object destructure - the todos in the array above represent every state, the setTodos is the function that updates those todos */
   const todoNameRef = useRef();
   function handleAddTodo(e) {
-    todoNameRef.current;
+    const name = todoNameRef.current.value;
+    if (name === "") return;
+    /* if user types in an empty string, no adding it to the todo list */
+    setTodos((prevTodos) => {
+      return [...prevTodos, { id: 1, name: name, complete: false }];
+    });
+    todoNameRef.current.value = null;
+    /* this line of code clear out the input field after the user input todo is added to the page */
   }
   return (
     <>
