@@ -10,6 +10,12 @@ function App() {
   const todoNameRef = useRef();
 
   useEffect(() => {
+    const storedTodos = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (storedTodos) setTodos(storedTodos);
+  }, []);
+  //? this useEffect hook is to load todo items and it only needs to be fired once when the component mount since the empty [] never changes; and it will only fire if there is storedTodos.
+
+  useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
   }, [todos]);
   //? any time the todos array changes, we want save the todos with the useEffect hook the the anonymous function written inside
