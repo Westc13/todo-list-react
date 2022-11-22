@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import TodoList from "./TodoList";
-import uuidv4 from "uuid/v4";
+import { v4 as uuidv4 } from "uuid";
 
 const LOCAL_STORAGE_KEY = "todoApp.todos";
 
@@ -10,8 +10,8 @@ function App() {
   const todoNameRef = useRef();
 
   useEffect(() => {
-    const storedTodos = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (storedTodos) setTodos(storedTodos);
+    const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    if (storedTodos) setTodos((prevTodos) => [...prevTodos, ...storedTodos]);
   }, []);
   //? this useEffect hook is to load todo items and it only needs to be fired once when the component mount since the empty [] never changes; and it will only fire if there is storedTodos.
 
