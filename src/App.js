@@ -41,12 +41,17 @@ function App() {
     todoNameRef.current.value = null;
     /* this line of code clear out the input field after the user input todo is added to the page */
   }
+
+  function handleClearTodos() {
+    const newTodos = todos.filter((todo) => !todo.complete);
+    setTodos(newTodos);
+  }
   return (
     <>
       <TodoList todos={todos} toggleTodo={toggleTodo} />
       <input ref={todoNameRef} type="text" />
       <button onClick={handleAddTodo}>Add Task</button>
-      <button>Clear Finished Task</button>
+      <button onClick={handleClearTodos}>Clear Finished Task</button>
       <div>{todos.filter((todo) => !todo.complete).length} left todo</div>
     </>
   );
