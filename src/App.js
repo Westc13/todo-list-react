@@ -20,6 +20,16 @@ function App() {
   }, [todos]);
   //? any time the todos array changes, we want save the todos with the useEffect hook the the anonymous function written inside
 
+  function toggleTodo(id) {
+    const newTodos = [...todos];
+    // newTodos is a copy of the original todos, so we don't directly change our original todos
+    //! in React, never directly modify a state variable
+
+    const todo = newTodos.find((todo) => todo.id === id);
+    todo.complete = !todo.complete;
+    setTodos(newTodos);
+  }
+
   function handleAddTodo(e) {
     const name = todoNameRef.current.value;
     if (name === "") return;
@@ -33,7 +43,7 @@ function App() {
   }
   return (
     <>
-      <TodoList todos={todos} />
+      <TodoList todos={todos} toggleTodo={toggleTodo} />
       <input ref={todoNameRef} type="text" />
       <button onClick={handleAddTodo}>Add Task</button>
       <button>Clear Finished Task</button>
